@@ -48,6 +48,7 @@ end
 if (pwrlvl < offVal and status == false) then
 rs.setOutput(rsSide,15)
 print("Power Levels Critical! Pasuing Automation!")
+print("Keep Holding \'Control\' Key until Override Message is shown to restore power")
 status = true
 end
 
