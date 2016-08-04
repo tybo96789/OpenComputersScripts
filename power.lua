@@ -1,7 +1,9 @@
 --**********
 --Simple program to send a redstone signal when power is below and above a certain percentage
+--Uses Adapter: Connected to a Thermal Expansion Energy cell
+--Uses Redstone I/O block: to send redstone signal
 --Created by tybo96789
---Version 1.1
+--Version 1.11
 --**********
 
 
@@ -20,6 +22,7 @@ local status = false
 local offVal = 25
 local onVal = 50
 local overrideTimer = 300
+local startTime = os.time
 
 --Must use sides enum
 local rsSide
@@ -29,7 +32,7 @@ local updateInterval = 30
 while true do
 --Print the current percentage of power remaining in the cell
 local pwrlvl = cell.getEnergyStored()/cell.getMaxEnergyStored()*100
-print(pwrlvl .. %%)
+print("[Uptime: "os.time - startTime .. "] "..pwrlvl .. %%)
 
 --If user is holding down the 'Control' key and it is in lower power mode, restore power and recheck status again for the specified wait period 
 if (keyboard.isControlDown() and status == true) then
