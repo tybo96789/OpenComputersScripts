@@ -3,7 +3,7 @@
 --Uses Adapter: Connected to a Thermal Expansion Energy cell
 --Uses Redstone I/O block: to send redstone signal
 --Created by tybo96789
---Version 1.11
+--Version 1.12
 --**********
 
 
@@ -32,7 +32,13 @@ local updateInterval = 30
 while true do
 --Print the current percentage of power remaining in the cell
 local pwrlvl = cell.getEnergyStored()/cell.getMaxEnergyStored()*100
-print("[Uptime: "os.time - startTime .. "] ".. pwrlvl .. %%)
+--print("[Uptime: "os.time - startTime .. "] ".. pwrlvl .. %%)
+print(pwrlvl .. "%")
+
+if status == true then
+print("Hold \'Control\' Key until Override Message is shown to restore power")
+os.sleep(5)
+end
 
 --If user is holding down the 'Control' key and it is in lower power mode, restore power and recheck status again for the specified wait period 
 if (keyboard.isControlDown() and status == true) then
@@ -41,14 +47,14 @@ print("Override Requested! Resuming Automation")
 print("System will recheck status in " .. overrideTimer .. " seconds")
 os.sleep(overrideTimer)
 pwrlvl = cell.getEnergyStored()/cell.getMaxEnergyStored()*100
-print(pwrlvl .. %%)
+print(pwrlvl .. "%")
 end
 
 --If power percentage is below the specified off value, send redstone signal
 if (pwrlvl < offVal and status == false) then
 rs.setOutput(rsSide,15)
 print("Power Levels Critical! Pasuing Automation!")
-print("Keep Holding \'Control\' Key until Override Message is shown to restore power")
+
 status = true
 end
 
