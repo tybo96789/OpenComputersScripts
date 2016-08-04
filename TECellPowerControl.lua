@@ -32,7 +32,7 @@ local updateInterval = 30
 while true do
 --Print the current percentage of power remaining in the cell
 local pwrlvl = cell.getEnergyStored()/cell.getMaxEnergyStored()*100
-print("[Uptime: "os.time - startTime .. "] "..pwrlvl .. %%)
+print("[Uptime: "os.time - startTime .. "] ".. pwrlvl .. %%)
 
 --If user is holding down the 'Control' key and it is in lower power mode, restore power and recheck status again for the specified wait period 
 if (keyboard.isControlDown() and status == true) then
