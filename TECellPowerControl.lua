@@ -3,7 +3,7 @@
 --Uses Adapter: Connected to a Thermal Expansion Energy cell
 --Uses Redstone I/O block: to send redstone signal
 --Created by tybo96789
---Version 1.12
+--Version 1.13
 --**********
 
 
@@ -14,15 +14,15 @@ local os = require("os")
 local keyboard = require("keyboard")
 
 --Component proxies
-local cell = component.proxy("")
-local rs = component.proxy("")
+local cell = component.proxy(component.list("tile_thermalexpansion_cell")())
+local rs = component.proxy(component.list("redstone")())
 
 --Vars
 local status = false
 local offVal = 25
 local onVal = 50
 local overrideTimer = 300
-local startTime = os.time
+local startTime = os.time()
 
 --Must use sides enum
 local rsSide
@@ -32,8 +32,8 @@ local updateInterval = 30
 while true do
 --Print the current percentage of power remaining in the cell
 local pwrlvl = cell.getEnergyStored()/cell.getMaxEnergyStored()*100
---print("[Uptime: "os.time - startTime .. "] ".. pwrlvl .. %%)
-print(pwrlvl .. "%")
+print("[Uptime: ".. os.difftime(os.time(),startTime) .. "] ".. pwrlvl .. "%")
+
 
 if status == true then
 print("Hold \'Control\' Key until Override Message is shown to restore power")
