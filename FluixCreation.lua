@@ -19,14 +19,14 @@ local inv = component.proxy(component.inventory_controller.address)
 print("Use \"CONTROL + ALT + C\" to terminate program")
 
 if not component.isAvailable("inventory_controller") then
-print("A Inventory Controller is required!)
+print("A Inventory Controller is required!")
 os.exit()
 end
 
 while true do
 
 --Check if the inventory has 1 of the following Charged Certus Quartz, Redstone Dust, Nether Quartz
-if (inv.getSlotStackSize(sides.front,1) == 1 and (inv.getSlotStackSize(sides.front,2) == 1 and inv.getSlotStackSize(sides.front,3) == 1) then
+if (inv.getSlotStackSize(sides.front,1) == 1 and (inv.getSlotStackSize(sides.front,2) == 1) and (inv.getSlotStackSize(sides.front,3) == 1)) then
 
 --Grab those items and store in robot internal storage
 inv.suckFromSlot(sides.front,1,1)
