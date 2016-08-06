@@ -3,7 +3,7 @@
 --Assumes that required items are in a chest front of the robot and water pool is 1 block behind them
 --Returns finished product back to the orignal chest that the robot took the items from
 --Created by tybo96789
---Version: 1.02
+--Version: 1.03
 --************
 
 --Required Dependences
