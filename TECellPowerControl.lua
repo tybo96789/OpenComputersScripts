@@ -3,7 +3,7 @@
 --Uses Adapter: Connected to a Thermal Expansion Energy cell
 --Uses Redstone I/O block: to send redstone signal
 --Created by tybo96789
---Version 1.13
+--Version 1.14
 --**********
 
 
@@ -29,6 +29,25 @@ local rsSide
 local updateInterval = 30
 
 --Code
+
+--Check if redstone control is Available
+if rs == nil then 
+print("No redstone control detected!")
+os.exit()
+end
+
+--Check if TE Energy cell is connected
+if cell == nil then
+print("No TE Energy Cell detected!")
+os.exit()
+end
+
+--Check if user has inputted a side to send redstone signal to
+if rsSide == nil then
+print("No side Selected for redstone output!\nPlease edit this program with a valid side")
+os.exit()
+end
+
 while true do
 --Print the current percentage of power remaining in the cell
 local pwrlvl = cell.getEnergyStored()/cell.getMaxEnergyStored()*100
@@ -54,7 +73,6 @@ end
 if (pwrlvl < offVal and status == false) then
 rs.setOutput(rsSide,15)
 print("Power Levels Critical! Pasuing Automation!")
-
 status = true
 end
 
@@ -64,6 +82,7 @@ rs.setOutput(rsSide,0)
 print("Power Levels Normal! Resuming Automation!")
 status = false
 end
+
 --Sleep the program for the specified amount of time
 os.sleep(updateInterval)
 end
